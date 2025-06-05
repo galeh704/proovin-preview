@@ -1,14 +1,19 @@
-/* General Styles */
+/* General Styles (Dark Mode Palette) */
 :root {
-  --primary-color: #007bff; /* Blue */
-  --secondary-color: #6c757d; /* Gray */
-  --accent-color: #28a745; /* Green for CTA */
-  --dark-blue: #0a1c2c;
-  --light-gray: #f8f9fa;
-  --text-color: #343a40;
-  --white: #ffffff;
+  --primary-color: #79d70f; /* Vibrant Green - stands out on dark */
+  --secondary-color: #a0a0a0; /* Lighter gray for secondary text */
+  --accent-color: #2196f3; /* Bright Blue for CTA */
+  --dark-bg-main: #1a1a1a; /* Main dark background */
+  --dark-bg-alt: #2a2a2a; /* Slightly lighter dark for alternating sections */
+  --card-bg-color: #333333; /* Background for cards/containers */
+  --text-color-light: #e0e0e0; /* Light text for main content */
+  --text-color-primary-emphasis: #ffffff; /* Pure white for headings/emphasis */
+  --border-color-dark: #444444; /* Soft border on dark */
+  --box-shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.3); /* Darker, softer shadow */
+  --red-error: #ff6347; /* Tomato red for error/contrast */
+  --green-success: #66bb6a; /* Light green for success/positive contrast */
+
   --border-radius: 8px;
-  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -18,15 +23,15 @@
 }
 
 html {
-  scroll-behavior: smooth; /* Transisi halus antar bagian */
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--white);
-  overflow-x: hidden; /* Prevent horizontal scroll from parallax */
+  color: var(--text-color-light); /* Default text color */
+  background-color: var(--dark-bg-main); /* Default background color */
+  overflow-x: hidden;
 }
 
 .container {
@@ -41,7 +46,7 @@ a {
 }
 
 a:hover {
-  color: var(--dark-blue);
+  color: var(--accent-color);
 }
 
 ul {
@@ -53,18 +58,20 @@ ul {
 }
 
 .bg-light-gray {
-  background-color: var(--light-gray);
+  /* Now used for alternating dark background */
+  background-color: var(--dark-bg-alt);
 }
 
 .bg-dark-blue {
-  background-color: var(--dark-blue);
-  color: var(--white);
+  /* Renamed for clarity, keeping original name but styling for dark mode */
+  background-color: var(--dark-bg-main);
+  color: var(--text-color-light);
 }
 
 .bg-dark-blue h2,
 .bg-dark-blue .section-description,
 .bg-dark-blue .faq-question {
-  color: var(--white);
+  color: var(--text-color-primary-emphasis);
 }
 
 h1,
@@ -72,7 +79,7 @@ h2,
 h3,
 h4 {
   margin-bottom: 20px;
-  color: var(--dark-blue);
+  color: var(--text-color-primary-emphasis); /* Headings are brighter */
   font-weight: 700;
 }
 
@@ -96,7 +103,7 @@ h3 {
   text-align: center;
   max-width: 800px;
   margin: 0 auto 60px auto;
-  color: var(--secondary-color);
+  color: var(--secondary-color); /* Muted description text */
 }
 
 .btn {
@@ -112,27 +119,27 @@ h3 {
 }
 
 .primary-btn {
-  background-color: var(--accent-color);
-  color: var(--white);
+  background-color: var(--accent-color); /* Bright blue for main CTA */
+  color: var(--text-color-primary-emphasis);
 }
 
 .primary-btn:hover {
-  background-color: #218838;
+  background-color: #1976d2; /* Slightly darker blue on hover */
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
 }
 
 .secondary-btn {
   background-color: transparent;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Primary green for secondary button text */
   border: 2px solid var(--primary-color);
 }
 
 .secondary-btn:hover {
   background-color: var(--primary-color);
-  color: var(--white);
+  color: var(--dark-bg-main); /* Dark text on green background */
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 8px 20px rgba(121, 215, 15, 0.3);
 }
 
 .large-btn {
@@ -142,9 +149,9 @@ h3 {
 
 /* Navbar */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--dark-bg-main); /* Dark navbar */
   padding: 15px 0;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -163,7 +170,7 @@ h3 {
 }
 
 .navbar .logo a {
-  color: var(--dark-blue);
+  color: var(--text-color-primary-emphasis); /* White for logo */
   text-decoration: none;
 }
 
@@ -173,7 +180,7 @@ h3 {
 }
 
 .navbar .nav-links a {
-  color: var(--text-color);
+  color: var(--text-color-light); /* Light gray for nav links */
   font-weight: 500;
   position: relative;
   padding: 5px 0;
@@ -184,7 +191,7 @@ h3 {
   position: absolute;
   width: 0;
   height: 3px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color); /* Green underline */
   left: 0;
   bottom: -5px;
   transition: width 0.3s ease;
@@ -215,7 +222,7 @@ h3 {
 .hamburger-menu .bar {
   width: 100%;
   height: 3px;
-  background-color: var(--dark-blue);
+  background-color: var(--text-color-light); /* Light bars for hamburger */
   border-radius: 5px;
   transition: all 0.3s ease;
 }
@@ -235,12 +242,12 @@ h3 {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 90vh; /* Sedikit lebih tinggi */
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--white);
+  color: var(--text-color-primary-emphasis); /* Text remains white */
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -255,7 +262,7 @@ h3 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
   z-index: 1;
 }
 
@@ -266,14 +273,14 @@ h3 {
 }
 
 .hero-content h1 {
-  color: var(--white);
+  color: var(--text-color-primary-emphasis);
   margin-bottom: 20px;
 }
 
 .hero-content p {
   font-size: 1.3em;
   margin-bottom: 40px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color-light);
 }
 
 .hero-cta {
@@ -289,7 +296,7 @@ h3 {
   margin-right: auto;
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Darker shadow for dark mode */
 }
 
 .hero-image-mockup img {
@@ -357,7 +364,7 @@ h3 {
   transition-delay: 0.8s;
 }
 
-/* Why Provin Section (Kenapa Proovin?) */
+/* Why Proovin Section */
 .why-provin-benefits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -365,28 +372,34 @@ h3 {
 }
 
 .benefit-item {
-  background-color: var(--white);
+  background-color: var(--card-bg-color); /* Darker card background */
   padding: 30px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  border: 1px solid var(--border-color-dark); /* Subtle border */
 }
 
 .benefit-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background-color: #404040; /* Slightly lighter on hover */
 }
 
 .benefit-item .icon-large {
   font-size: 3em;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Green icon */
   margin-bottom: 20px;
 }
 
 .benefit-item h3 {
   margin-bottom: 15px;
-  color: var(--dark-blue);
+  color: var(--text-color-primary-emphasis);
+}
+.benefit-item p {
+  color: var(--text-color-light);
 }
 
 /* Features Section */
@@ -397,18 +410,20 @@ h3 {
 }
 
 .feature-item {
-  background-color: var(--white);
+  background-color: var(--card-bg-color); /* Darker card background */
   padding: 30px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  border: 1px solid var(--border-color-dark);
 }
 
 .feature-item:hover {
   transform: translateY(-15px);
-  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
-  background-color: var(--light-gray);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  background-color: #404040;
 }
 
 .feature-item .icon-large {
@@ -419,7 +434,13 @@ h3 {
 }
 
 .feature-item:hover .icon-large {
-  color: var(--accent-color);
+  color: var(--accent-color); /* Blue on hover for icons */
+}
+.feature-item h3 {
+  color: var(--text-color-primary-emphasis);
+}
+.feature-item p {
+  color: var(--text-color-light);
 }
 
 /* How It Works Section */
@@ -432,20 +453,30 @@ h3 {
 }
 
 .workflow-step {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Very subtle light background */
   padding: 25px;
   border-radius: var(--border-radius);
   text-align: center;
   flex: 1;
   min-width: 250px;
   max-width: 300px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .workflow-step:hover {
   transform: translateY(-10px);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly more visible on hover */
 }
 
 .workflow-step .step-number {
@@ -457,12 +488,12 @@ h3 {
 }
 
 .workflow-step h3 {
-  color: var(--white);
+  color: var(--text-color-primary-emphasis);
   margin-bottom: 10px;
 }
 
 .workflow-step p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color-light);
 }
 
 .workflow-illustration {
@@ -471,7 +502,7 @@ h3 {
   text-align: center;
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .workflow-illustration img {
@@ -488,33 +519,33 @@ h3 {
 }
 
 .pricing-card {
-  background-color: var(--white);
+  background-color: var(--card-bg-color); /* Darker card background */
   padding: 40px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-  border: 2px solid transparent;
+  border: 2px solid var(--border-color-dark); /* Subtle default border */
 }
 
 .pricing-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .pricing-card.featured {
-  border-color: var(--primary-color);
-  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+  border-color: var(--primary-color); /* Featured card has green border */
+  box-shadow: 0 10px 30px rgba(121, 215, 15, 0.2); /* Green shadow */
   transform: scale(1.03);
 }
 
 .pricing-card.featured:hover {
   transform: translateY(-15px) scale(1.05);
-  box-shadow: 0 15px 40px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(121, 215, 15, 0.3);
 }
 
 .pricing-card h3 {
-  color: var(--dark-blue);
+  color: var(--text-color-primary-emphasis);
   font-size: 2em;
   margin-bottom: 15px;
 }
@@ -522,7 +553,7 @@ h3 {
 .pricing-card .price {
   font-size: 2.5em;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Green price */
   margin-bottom: 10px;
 }
 
@@ -542,11 +573,11 @@ h3 {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  color: var(--text-color);
+  color: var(--text-color-light);
 }
 
 .pricing-card ul li i {
-  color: var(--accent-color);
+  color: var(--green-success); /* Light green checkmarks */
   margin-right: 10px;
 }
 
@@ -556,19 +587,20 @@ h3 {
 
 /* Before After Section */
 .comparison-table {
-  background-color: var(--white);
+  background-color: var(--card-bg-color); /* Darker table background */
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   overflow: hidden;
   max-width: 900px;
   margin: 0 auto;
+  border: 1px solid var(--border-color-dark);
 }
 
 .comparison-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--primary-color); /* Green header */
+  color: var(--text-color-primary-emphasis);
   padding: 20px;
   font-weight: 600;
   text-align: center;
@@ -576,7 +608,7 @@ h3 {
 
 .comparison-header h3 {
   margin: 0;
-  color: var(--white);
+  color: var(--text-color-primary-emphasis);
   font-size: 1.2em;
 }
 
@@ -584,7 +616,7 @@ h3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 20px;
-  border-bottom: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--border-color-dark); /* Dark border */
   align-items: center;
   text-align: center;
 }
@@ -594,20 +626,21 @@ h3 {
 }
 
 .comparison-row:nth-child(even) {
-  background-color: var(--light-gray);
+  background-color: var(--dark-bg-alt); /* Alternating row color */
 }
 
 .comparison-row .aspect {
   font-weight: 600;
   text-align: left;
+  color: var(--text-color-primary-emphasis);
 }
 
 .comparison-row .dulu {
-  color: #dc3545; /* Red for 'Dulu' */
+  color: var(--red-error); /* Red for 'Dulu' */
 }
 
 .comparison-row .sekarang {
-  color: var(--accent-color); /* Green for 'Sekarang' */
+  color: var(--green-success); /* Green for 'Sekarang' */
 }
 
 /* Testimonials Section */
@@ -631,21 +664,25 @@ h3 {
 .testimonial-item {
   min-width: 100%;
   padding: 40px;
-  background-color: var(
-    --white
-  ); /* Changed to white for better contrast with light-gray section */
+  background-color: var(--card-bg-color); /* Darker card background */
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   text-align: center;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+  border: 1px solid var(--border-color-dark);
+}
+
+.testimonial-item:hover {
+  background-color: #404040;
+  transform: translateY(-5px);
 }
 
 .testimonial-item p {
   font-size: 1.2em;
   font-style: italic;
   margin-bottom: 30px;
-  color: var(--dark-blue);
+  color: var(--text-color-light);
 }
 
 .client-info {
@@ -661,18 +698,18 @@ h3 {
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--primary-color);
+  border: 3px solid var(--primary-color); /* Green border */
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .testimonial-item:hover .client-info img {
-  border-color: var(--accent-color);
+  border-color: var(--accent-color); /* Blue on hover */
   transform: scale(1.05);
 }
 
 .client-info h4 {
   margin: 0;
-  color: var(--dark-blue);
+  color: var(--text-color-primary-emphasis);
 }
 
 .client-info span {
@@ -691,8 +728,8 @@ h3 {
 }
 
 .slider-nav button {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--primary-color); /* Green buttons */
+  color: var(--text-color-primary-emphasis);
   border: none;
   padding: 15px;
   border-radius: 50%;
@@ -700,13 +737,13 @@ h3 {
   font-size: 1.2em;
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
 }
 
 .slider-nav button:hover {
-  background-color: var(--dark-blue);
+  background-color: var(--accent-color); /* Blue on hover */
   transform: scale(1.1);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* About Section */
@@ -719,6 +756,7 @@ h3 {
 .about-content p {
   margin-bottom: 20px;
   font-size: 1.1em;
+  color: var(--text-color-light);
 }
 
 /* FAQ Section */
@@ -728,22 +766,27 @@ h3 {
 }
 
 .faq-item {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Very subtle light background */
   border-radius: var(--border-radius);
   margin-bottom: 15px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .faq-item:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--primary-color); /* Green border on hover */
 }
 
 .faq-question {
   background-color: transparent;
-  color: var(--white);
+  color: var(--text-color-primary-emphasis);
   padding: 20px 25px;
   width: 100%;
   text-align: left;
@@ -758,7 +801,7 @@ h3 {
 }
 
 .faq-question:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .faq-question::after {
@@ -776,7 +819,7 @@ h3 {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color-light);
 }
 
 .faq-answer.active {
@@ -796,16 +839,17 @@ h3 {
   flex: 1;
   min-width: 300px;
   max-width: 600px;
-  background-color: var(--white);
+  background-color: var(--card-bg-color); /* Darker form background */
   padding: 40px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-dark);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color-dark);
 }
 
 .contact-form-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .contact-form input,
@@ -813,18 +857,25 @@ h3 {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
   font-family: "Poppins", sans-serif;
   font-size: 1em;
+  background-color: var(--dark-bg-main); /* Dark input fields */
+  color: var(--text-color-light);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--secondary-color);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+  box-shadow: 0 0 0 4px rgba(121, 215, 15, 0.2);
 }
 
 .contact-form textarea {
@@ -842,27 +893,27 @@ h3 {
   max-width: 400px;
   padding: 40px 0;
   text-align: left;
-  color: var(--text-color); /* Corrected text color */
+  color: var(--text-color-light);
 }
 
 .contact-info h3 {
-  color: var(--dark-blue);
+  color: var(--text-color-primary-emphasis);
   margin-bottom: 25px;
 }
 
 .contact-info p {
   display: flex;
-  align-items: flex-start; /* Align icon with text top */
+  align-items: flex-start;
   margin-bottom: 15px;
   font-size: 1.1em;
-  color: var(--text-color);
+  color: var(--text-color-light);
 }
 
 .contact-info p i {
   margin-right: 15px;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Green icons */
   font-size: 1.3em;
-  flex-shrink: 0; /* Prevent icon from shrinking */
+  flex-shrink: 0;
 }
 
 .social-links {
@@ -872,7 +923,7 @@ h3 {
 }
 
 .social-links a {
-  color: var(--text-color);
+  color: var(--text-color-light);
   font-size: 1.8em;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -884,9 +935,10 @@ h3 {
 
 /* Footer */
 .footer {
-  background-color: var(--dark-blue);
-  color: var(--white);
+  background-color: var(--dark-bg-main);
+  color: var(--text-color-light);
   padding: 50px 0 20px 0;
+  border-top: 1px solid var(--border-color-dark);
 }
 
 .footer .container {
@@ -912,7 +964,7 @@ h3 {
 }
 
 .footer-col h3 {
-  color: var(--white);
+  color: var(--text-color-primary-emphasis);
   margin-bottom: 20px;
 }
 
@@ -921,7 +973,7 @@ h3 {
 }
 
 .footer-col ul li a {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color-light);
   transition: color 0.3s ease;
 }
 
@@ -936,7 +988,7 @@ h3 {
 }
 
 .footer-social-links a {
-  color: var(--white);
+  color: var(--text-color-light);
   font-size: 1.5em;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -947,219 +999,38 @@ h3 {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border-color-dark);
   padding-top: 20px;
   width: 100%;
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--secondary-color);
 }
 
-/* Responsive Design */
+/* Responsive Design (adjusting for dark mode colors where needed) */
 @media (max-width: 992px) {
   .navbar .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.98);
-    position: absolute;
-    top: 70px;
-    left: 0;
-    box-shadow: var(--box-shadow);
-    padding: 20px 0;
-    animation: slideDown 0.3s ease-out forwards;
-  }
-
-  .navbar .nav-links.active {
-    display: flex;
-  }
-
-  .navbar .nav-links ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .navbar .cta-buttons {
-    display: none;
+    background-color: var(--dark-bg-main);
   }
 
   .navbar .cta-buttons.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    position: absolute;
-    top: calc(70px + 200px);
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.98);
-    padding-bottom: 20px;
-    animation: slideDown 0.3s ease-out forwards;
+    background-color: var(--dark-bg-main);
   }
 
-  .hamburger-menu {
-    display: flex;
+  .hamburger-menu .bar {
+    background-color: var(--text-color-light);
   }
 
-  .hero-content h1 {
-    font-size: 2.8em;
-  }
-
-  .hero-content p {
-    font-size: 1.1em;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-  }
-
-  .features-grid,
-  .why-provin-benefits-grid,
-  .pricing-cards {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-
-  .workflow-steps {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .workflow-step {
-    width: 90%;
-    max-width: 350px;
-  }
-
-  .comparison-table {
-    margin: 0 10px; /* Add some margin on smaller screens */
-  }
-
-  .comparison-header,
-  .comparison-row {
-    grid-template-columns: 1fr 1fr; /* Collapse to 2 columns */
-  }
-
-  .comparison-header h3:first-child,
   .comparison-row .aspect {
-    grid-column: span 2; /* Make Aspect span full width */
-    text-align: center;
-  }
-  .comparison-row .aspect {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-  }
-
-  .contact-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .contact-form-container,
-  .contact-info {
-    width: 90%;
-    max-width: none;
-  }
-
-  .footer-columns {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-col {
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-  }
-  .footer-social-links {
-    justify-content: center;
+    color: var(--text-color-primary-emphasis);
   }
 }
 
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5em;
-  }
-
-  h2 {
-    font-size: 2em;
-  }
-
-  .section-padding {
-    padding: 60px 0;
-  }
-
-  .navbar .nav-links.active {
-    top: 60px;
-  }
-
-  .navbar .cta-buttons.active {
-    top: calc(60px + 200px);
-  }
-
-  .hero-section {
-    height: auto;
-    min-height: 80vh;
-    padding-bottom: 40px;
-  }
-  .hero-image-mockup {
-    max-width: 80%;
-  }
+  /* No specific dark mode overrides needed here, inherits from above */
 }
 
 @media (max-width: 576px) {
-  .navbar .logo {
-    font-size: 1.5em;
-  }
-
-  .navbar .nav-links.active {
-    top: 50px;
-  }
-
-  .navbar .cta-buttons.active {
-    top: calc(50px + 200px);
-  }
-
-  .hero-content h1 {
-    font-size: 2em;
-  }
-
-  .hero-content p {
-    font-size: 1em;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-size: 0.9em;
-  }
-
-  .large-btn {
-    padding: 12px 25px;
-    font-size: 1em;
-  }
-
-  .feature-item,
-  .benefit-item,
-  .pricing-card {
-    padding: 20px;
-  }
-
-  .testimonial-item {
-    padding: 20px;
-  }
-
-  .client-info img {
-    width: 60px;
-    height: 60px;
-  }
-
-  .contact-form-container {
-    padding: 30px;
-  }
-  .comparison-header,
-  .comparison-row {
-    padding: 15px;
-  }
-  .comparison-header h3 {
-    font-size: 1em;
-  }
+  /* No specific dark mode overrides needed here, inherits from above */
 }
 
 /* Keyframes for animations */
