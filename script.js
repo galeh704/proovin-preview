@@ -31,54 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Testimonial Slider
-  const slider = document.querySelector(".testimonial-slider");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
-  const testimonialItems = document.querySelectorAll(".testimonial-item");
-  let currentIndex = 0;
-
-  function updateSlider() {
-    if (testimonialItems.length === 0) return; // Handle empty slider
-    const itemWidth = testimonialItems[0].clientWidth;
-    slider.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
-  }
-
-  // Initialize slider width on load and resize
-  window.addEventListener("resize", updateSlider);
-  updateSlider(); // Initial call
-
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % testimonialItems.length;
-    updateSlider();
-  });
-
-  prevBtn.addEventListener("click", () => {
-    currentIndex =
-      (currentIndex - 1 + testimonialItems.length) % testimonialItems.length;
-    updateSlider();
-  });
-
-  // Auto-advance slider
-  let autoSlideInterval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % testimonialItems.length;
-    updateSlider();
-  }, 5000); // Change slide every 5 seconds
-
-  // Pause auto-slide on hover
-  if (slider && slider.parentNode) {
-    // Check if elements exist
-    slider.parentNode.addEventListener("mouseenter", () =>
-      clearInterval(autoSlideInterval)
-    );
-    slider.parentNode.addEventListener("mouseleave", () => {
-      autoSlideInterval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % testimonialItems.length;
-        updateSlider();
-      }, 5000);
-    });
-  }
-
   // Responsive Navbar (Hamburger Menu)
   const hamburgerMenu = document.querySelector(".hamburger-menu");
   const navLinks = document.querySelector(".nav-links");
@@ -101,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Smooth Scrolling for anchor links (Already implemented but confirming)
+  // Smooth Scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -133,11 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
         // Optional: Stop observing after animation to save resources
-        // observer.unobserve(entry.target);
+        // observer.unobserve(entry.target); // Uncomment if you want elements to only animate once
       } else {
         // Optional: Remove 'active' class when element leaves viewport
         // This makes the animation repeat on scroll up/down
-        // entry.target.classList.remove('active');
+        // entry.target.classList.remove('active'); // Uncomment if you want animations to reset when out of view
       }
     });
   }, observerOptions);
@@ -147,11 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Apply fade-in animation to hero content when page loads
-  // We can add a separate class for initial load
-  const heroContentCTA = document.querySelector(".hero-content .hero-cta");
-  if (heroContentCTA) {
-    heroContentCTA.classList.add("active"); // Directly apply active class to hero CTA
-  }
+  // These elements are often visible immediately, so applying 'active' on load
   const heroContentH1 = document.querySelector(".hero-content h1");
   if (heroContentH1) {
     heroContentH1.classList.add("active");
@@ -160,9 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroContentP) {
     heroContentP.classList.add("active");
   }
-  const heroImageMockup = document.querySelector(".hero-image-mockup");
-  if (heroImageMockup) {
-    heroImageMockup.classList.add("active");
+  const heroContentCTA = document.querySelector(".hero-content .hero-cta");
+  if (heroContentCTA) {
+    heroContentCTA.classList.add("active");
   }
 
   // FAQ Accordion Functionality
@@ -170,24 +118,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   faqQuestions.forEach((question) => {
     question.addEventListener("click", () => {
-      const answer = question.nextElementSibling; // The div containing the answer
+      const answer = question.nextElementSibling;
+
+      // Close any currently active FAQ item first (if desired for single open at a time)
+      document
+        .querySelectorAll(".faq-question.active")
+        .forEach((activeQuestion) => {
+          if (activeQuestion !== question) {
+            // Don't close the one just clicked
+            activeQuestion.classList.remove("active");
+            activeQuestion.nextElementSibling.classList.remove("active");
+          }
+        });
 
       // Toggle active class on the clicked question
       question.classList.toggle("active");
-
       // Toggle max-height and padding for the answer
-      if (answer.classList.contains("active")) {
-        answer.classList.remove("active");
-      } else {
-        // Close all other open answers before opening the new one
-        document
-          .querySelectorAll(".faq-answer.active")
-          .forEach((openAnswer) => {
-            openAnswer.classList.remove("active");
-            openAnswer.previousElementSibling.classList.remove("active"); // Remove active from question
-          });
-        answer.classList.add("active");
-      }
+      answer.classList.toggle("active");
     });
   });
 });
